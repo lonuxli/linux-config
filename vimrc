@@ -98,11 +98,17 @@ nmap <C-L> :q!<cr>
 nmap <C-K> :qa!<cr>
 nmap <C-J> :w!<cr>
 
-"quickfix window map
-nmap <leader>n :cn<cr>
-nmap <leader>p :cp<cr>
-nmap <leader>w :cw 10<cr>
-nmap <leader>e :cclose<cr>
+if &diff
+	"vimdiff模式下差异点浏览快捷键
+	nmap z] ]c
+	nmap z[ [c
+else
+	"quickfix window map
+	nmap <leader>n :cn<cr>
+	nmap <leader>p :cp<cr>
+	nmap <leader>w :cw 10<cr>
+	nmap <leader>e :cclose<cr>
+endif
 
 "config externel grep cmd
 set grepprg=grep\ -rn\ --exclude-dir=.svn\ --exclude-dir=.git\ --include=*.c\ --include=*.h\ --include=*.cpp\ --include=*.s\ --include=*.dtsi\ --include=*.dts\ --include=*.c\ --include=*.go\ --include=*.txt\ --include=*.rst\ $*\ /dev/null 
