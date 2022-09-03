@@ -93,6 +93,14 @@ imap <C-A> <Esc>:w!<CR>
 "====================================================
 "add by lilong
 "====================================================
+
+"----------------------------------------------------
+"vim-translator翻译插件快捷键
+"插件源:https://github.com/bujnlc8/vim-translator
+"----------------------------------------------------
+noremap <leader>t :<C-u>Tc<CR>
+vnoremap <leader>t :<C-u>Tv<CR>
+
 "vim 退出快捷键
 nmap <C-L> :q!<cr>
 nmap <C-K> :qa!<cr>
