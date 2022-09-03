@@ -96,6 +96,7 @@ imap <C-A> <Esc>:w!<CR>
 
 "----------------------------------------------------
 "vim-translator翻译插件快捷键
+"需在vim/plugin/下安装vim-translator插件,当前为软链接
 "插件源:https://github.com/bujnlc8/vim-translator
 "----------------------------------------------------
 noremap <leader>t :<C-u>Tc<CR>
