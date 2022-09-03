@@ -99,6 +99,8 @@ imap <C-A> <Esc>:w!<CR>
 "需在vim/plugin/下安装vim-translator插件,当前为软链接
 "插件源:https://github.com/bujnlc8/vim-translator
 "----------------------------------------------------
+let g:translator_cache=1
+let g:translator_outputype='echo'
 noremap <leader>t :<C-u>Tc<CR>
 vnoremap <leader>t :<C-u>Tv<CR>
 
