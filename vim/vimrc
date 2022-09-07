@@ -20,6 +20,8 @@ syntax enable
 " 高亮当前行
 set cursorline
 set nocursorcolumn
+" 支持256色
+set t_Co=256
 "set cc=80
 "set cursorcolumn 
 
@@ -32,7 +34,6 @@ set background=dark
 "======================================================
 if &diff
 	colors peaksea
-	set t_Co=256
 endif
 
 
@@ -145,7 +146,6 @@ noremap qm O<esc>
 "=========================================
 "
 "set laststatus=2
-"set t_Co=256
 "let g:Powerline_symbols = 'unicode'
 
 "================================================================
@@ -361,7 +361,6 @@ filetype plugin indent on
 
 
 " 设置配色和CSApprox
-" set t_Co=256
 " let g:CSApprox_attr_map={'bold':'bold','italic':'','sp':''}
 " let g:rehash256 = 1
 "
