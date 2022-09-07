@@ -12,6 +12,10 @@ mkdir -p ~/.Mail/outbox
 mkdir -p ~/.Mail/inbox/new  
 mkdir -p ~/.Mail/inbox/cur  
 mkdir -p ~/.Mail/inbox/tmp  
+mkdir -p ~/.Mail/LKML  
+mkdir -p ~/.Mail/LKML/new  
+mkdir -p ~/.Mail/LKML/cur  
+mkdir -p ~/.Mail/LKML/tmp  
 mkdir -p ~/.Mail/.mutt  
 touch ~/.Mail/.mutt/mutt.alias  
 
