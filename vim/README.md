@@ -4,9 +4,12 @@
 ## Introduction 
 Linux环境下软件开发用vim插件及配置，git clone之后可以通过软链接进行安装使用:
 
-git clone https://github.com/lonuxli/vim-config.git
-ln -s ~/github/vim-config/vimrc .vimrc
-ln -s ~/github/vim-config/vim .vim
+mkdir ~/github
+cd ~/github
+git clone https://github.com/lonuxli/vim-translator.git
+git clone https://github.com/lonuxli/linux-config.git
+ln -s ~/github/linux-config/vim/vimrc ~/.vimrc
+ln -s ~/github/linux-config/vim/vim ~/.vim
 
 
 ## Changelog
