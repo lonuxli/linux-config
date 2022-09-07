@@ -1,0 +1,18 @@
+[options]
+verbose = 0
+delete = false
+ 
+[retriever]
+type = SimpleIMAPSSLRetriever
+server = imap.gmail.com
+username = lonuxli.64@gmail.com
+password = xxxxxxxxxxxxx 
+ 
+[destination]
+# getmail本身存放邮件
+#type = Maildir
+#path = ~/.Mail/inbox/
+
+# 采用procmail过滤存放邮件
+type = MDA_external
+path = /usr/bin/procmail
