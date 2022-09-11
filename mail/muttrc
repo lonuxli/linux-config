@@ -1,6 +1,14 @@
+# -------------------------------------------------------------------------------------
+# create-by: Long Li<lonuxli.64@gmail.com>
+# -------------------------------------------------------------------------------------
 set use_from=yes
 set realname="Long Li"
 set from=lonuxli.64@gmail.com
+
+#编辑器
+set editor="/usr/bin/vim"
+#设置邮件发送程序
+set sendmail="/usr/bin/msmtp"
 
 set charset      = "utf-8"           # 终端支持的编码，Linux下一般是utf-8
 set send_charset = "utf-8"           # 发信编码
@@ -10,33 +18,28 @@ charset-hook !utf-8 gb2312           # 用gb2312编码显示非utf-8编码的信
 set assumed_charset    = "gb2312"    # 用gb2312编码显示未经MIME编码的信件
 set rfc2047_parameters = yes         # 用gb2312编码显示中文附件名
 
-
-#编辑器
-set editor="/usr/bin/vim"
-#设置邮件发送程序
-set sendmail="/usr/bin/msmtp"
-
-# 让mutt监视下面几个邮箱，并随时报告新邮件
-mailboxes "=inbox"
-
-#这是一个格式字符串，用来控制你的index的列表显示。它的缺省定义是
-#set index_format="%4C %Z %{%b %d} %-15.15L (%4l) %s"
-#指定你有那些信箱文件。当你按 "c" 切换信箱时，再按 Tab 键，这些信箱就可供你选择
-mailboxes Mailbox sent-mail 
-
-# Quit without question
-#set quit=ask-yes
-
-# Ask for a key after command
-set wait_key=yes
-
+# ------------------------------------------------------------------------------------
+# 信箱设置
+set mbox_type = Maildir
 set folder    = "~/.Mail"          # 所有信件所在目录
 set mbox      = "~/.Mail/inbox"    # 收件箱文件
-set record    = "~/.Mail/outbox"     # 发件箱文件
+set record    = "~/.Mail/outbox"   # 发件箱文件
 set spoolfile = "~/.Mail/inbox"    # 启动mutt后默认显示的信箱文件
-#你发出的邮件保存到那个信箱文件？比如可以像我这样每个月发出的信件放在不同的文件里。
-set record="~/.Mail/outbox/=sent-mail-`date +%Y-%m`"
+set postponed = "~/.Mail/drafts"    # 草稿箱
+# 自动匹配~/.Mail目录下以字母开头的目录作为信箱
+#mailboxes `echo -n "+ "; find ~/.Mail -maxdepth 1 -type d -name "[a-zA-Z]*" -printf "+'%f' "`
+mailboxes `find ~/.Mail -maxdepth 1 -type d -name "[a-zA-Z]*" -printf "+'%f' "`
 
+#地址簿
+source ~/.Mail/.mutt/mutt.alias
+set alias_file="~/.Mail/.mutt/mutt.alias"
+
+# 邮件头缓存的数据库可以提高邮箱打开速度
+set header_cache="~/.Mail/.hcache"
+set maildir_header_cache_verify=no
+
+# -------------------------------------------------------------------------------------
+# 回信格式
 # 回信时是否包含原文
 set include
 # 回信引文前的符号
@@ -51,44 +54,120 @@ unset metoo
 unset reply_self
 set reply_regexp="^(re([\[0-9\]+])*|aw|回复)(:[ \t]|：)"
 
-#把mutt发送的from域作为sendmail发送邮件的sender(否则会用user@localdomian)
-set envelope_from=yes
-
+# --------------------------------------------------------------------------------------
+# 显示及交互配置
 # 排序方式
 set sort=threads
 set sort_aux=reverse-last-date
-
+set strict_threads="yes"
+set sort_browser="reverse-date"
+set collapse_unread="yes"
 set ascii_chars=yes
 set pager_stop=yes
 set edit_headers=no
 set pager_index_lines=5
 
-#地址簿
-source ~/.Mail/.mutt/mutt.alias
-set alias_file=~/.Mail/.mutt/mutt.alias
+#把mutt发送的from域作为sendmail发送邮件的sender(否则会用user@localdomian)
+set envelope_from=yes
+# mutt进度显示,0为不显示
+set read_inc=0
+
+
+set mail_check_stats=yes
+set sidebar_visible=yes
+#set sidebar_width=38 
+#set unsidebar_whitelist
+#set sidebar_format="%B%*  [%N/%S]"
+set sidebar_format = '%B%?F? [%F]?%* [%N / %S]'
+set sidebar_sort_method = 'count'
+
+unignore Message-Id:
+
+# Quit without question
+#set quit=ask-yes
+# Ask for a key after command
+set wait_key=yes
+set auto_tag = yes
 
 # ---------------------------------------------------------------------------------
-# 判断邮件列表
+# subscribe邮件列表
 #subscribe *@vger.kernel.org
 
 # ----------------------------------------------------------------------------------
-# Vim式键位映射, \c表示ctrl键
+# 键位映射, \c表示ctrl键
 bind pager G bottom
-bind pager j next-line
-bind pager k previous-line
-bind pager \cf next-page
-bind pager \cb previous-page
-bind pager \cj next-entry
-bind pager \ck previous-entry
 bind pager gg top
 bind pager G bottom
 bind index gg first-entry
 bind index G last-entry
 bind index R group-reply
-bind index \cf next-page
-bind index \cb previous-page
-bind index } bottom-page
-bind index f change-folder
+
+bind index,pager \cf next-page
+bind index,pager \cb previous-page
+bind pager j next-line
+bind pager k previous-line
+bind index j next-entry
+bind index k previous-entry
+bind pager \cj next-entry
+bind pager \ck previous-entry
+bind index \cj next-thread
+bind index \ck previous-thread
+bind index J first-entry
+bind index K last-entry
+bind index,pager n search-next
+bind index,pager N search-opposite
+bind index <Return> display-message
+
+bind index T untag-pattern
+bind index \ct tag-pattern
+# 将当前线程打上/取消tag
+bind index [t tag-thread
+# 将当前子线程打上/取消tag
+bind index ]t tag-subthread
+bind index t tag-entry 
+#bind index ; tag-prefix
+#bind index  tag-prefix-cond
+
+# 使用边框切换信箱, "w"开启/关闭边框
+bind index,pager w sidebar-toggle-visible
+bind index,pager \cp sidebar-prev 
+bind index,pager \cn sidebar-next
+bind index,pager \co sidebar-open
+#bind index,pager <up> sidebar-prev 
+#bind index,pager <down> sidebar-next
+#bind index,pager <right> sidebar-next
+#bind index,pager <left> sidebar-prev
+macro index,pager <left> "<sidebar-prev><sidebar-open>" "open prev mailbox"
+macro index,pager <right> "<sidebar-next><sidebar-open>" "open next mailbox"
+# "c"显示信箱列表
+macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+
+bind attach <Left> exit
+bind attach <Right> view-text
+
+# Saner copy/move dialogs 拷贝/移动邮件
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+macro index,pager * "K*<enter>"
+
+# "="折叠所有thread "-"折叠当前thread
+bind index = collapse-all
+bind index - collapse-thread
+
+# mail-patch
+macro index (t '<tag-prefix><pipe-entry>~/bin/mailbin/mail-to-mbox<return>'  "Dumps tagged patches into ~/incoming/*.patch"
+macro index (a '<tag-prefix><pipe-entry>~/bin/mailbin/git-apply-incoming<return>'  "git am ~/incoming/*.patch"
+macro index (g '<tag-prefix><pipe-entry>~/bin/mailbin/git-apply<return>'  "git am tagged patches"
+macro index (c '<pipe-entry>~/bin/mailbin/checkpatch<return>' "Run checkpatch on ~/incoming/*"
+macro index (r '<pipe-entry>rm -f ~/incoming/*.patch<return>'  "Nukes all ~/incoming/"
+macro index (l '<pipe-entry>ls -ltr ~/incoming/<return>'  "ls -l ~/incoming/"
+macro index ,t '<pipe-entry>~/bin/mailbin/mail-to-mbox<return>'  "Dumps currently viewed patch into ~/incoming/*.patch"
+macro index ,g '<pipe-entry>~/bin/mailbin/git-apply<return>' "git am currently viewed patch"
+macro index ,a '<pipe-entry>~/bin/mailbin/git-abort<return>' "git am --abort"
+macro index ,r '<pipe-entry>~/bin/mailbin/git-reset<return>' "git-reset --hard origin"
+
+# 重新加载.muttrc配置
+macro index,pager,compose,browser,attach \ca ":source ~/.muttrc\n" "reload the ~/.muttrc"
 
 # ----------------------------------------------------------------------------------
 # 自定义的patch补丁高亮, 方便查看patch
@@ -121,6 +200,19 @@ color   body    brightmagenta   black    "-- Patch Links --"
 color   body    green           black    "^Merged #.*"
 color   body    red             black    "^Closed #.*"
 color   body    brightblue      black    "^Reply to this email.*"
+
+# sidebar配色, Color of the current, open, mailbox
+# Note: This is a general Mutt option which colors all selected items.
+color indicator cyan black
+# Color of the highlighted, but not open, mailbox.
+color sidebar_highlight brightyellow black
+# Color of the divider separating the Sidebar from Mutt panels
+# color sidebar_divider color8 black
+# Color to give mailboxes containing flagged mail
+color sidebar_flagged red black
+# Color to give mailboxes containing new mail
+color sidebar_new green black
+
 
 # ----------------------------------------------------------------------------------
 # 引文起始符号设置
