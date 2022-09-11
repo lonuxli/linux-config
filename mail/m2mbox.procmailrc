@@ -1,0 +1,10 @@
+# procmailrc用于mail-to-git脚本调用,将mail重命名为patch名投递到指定目录
+SHELL=/bin/bash
+VERBOSE=off
+MAILDIR=$HOME/incoming/
+LOGFILE=$HOME/log/mail/procmaillog
+
+:0
+`formail -xSubject: | sed -e '{ s/Subject: //; s@\[@@g; s@\]@@g; s@[()]@_@g;
+s@[,/:]@-@g; s@"@_@g; s@^ \+@@; s@\.\.@.@g; s@ \+@_@g; s@-_@_@g; s@__@_@g;
+s@\.$@@;}'`.patch

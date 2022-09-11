@@ -1,0 +1,25 @@
+# 设置git-tree路径,将其写入~/incoming/.git_tree_path文件中,供mail-to-git系列脚本使用
+
+#!/bin/sh
+#set -x
+
+
+file=~/incoming/.git_tree_path
+curpath="Invalid Path!"
+
+if [ ! -z $1 ] ;then
+	echo "$1" > $file
+	exit 0
+fi
+
+if [ -s $file ] ;then
+	curpath=`tail -n -1 $file`
+fi
+
+
+echo -e "Current git tree path: $curpath"
+read -p "Please enter new path: " setpath
+if [ -n "$setpath" ] ;then
+	echo "$setpath" > $file
+fi
+

@@ -11,7 +11,7 @@ MAILDIR=~/.Mail
 # 默认存放的目录
 DEFAULT=~/.Mail/inbox
 # 日志文件存放位置
-LOGFILE=~/.Mail/.log/procmail.log
+LOGFILE=~/log/mail/procmail.log
 
 # 诊断用,关闭
 VERBOSE=no
@@ -28,14 +28,10 @@ VERBOSE=no
 # 此外的任意符号被认为是邮箱文件夹, 可以采用绝对路径, 若使用相对路径,
 # 则是相对与$MAILDIR, 例如inbox/,表示$MAILDIR/inbox
 
-:0
-* ^To:.*my_mail@mail.com
-inbox/
-
 # 归档lkml的邮件列表
 :0
-* ^Return-Path:.*xen-devel-bounces@lists.xen.org
-LKML/
+* ^To:.*@vger.kernel.org
+lkml/
 
 # 剩下的邮件存放至inbox目录中
 :0

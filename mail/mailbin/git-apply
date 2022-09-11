@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rm -f ~/incoming/*
+~/bin/mutt/mail-to-mbox
+~/bin/mutt/git-apply-incoming

@@ -154,17 +154,22 @@ macro index,pager * "K*<enter>"
 bind index = collapse-all
 bind index - collapse-thread
 
-# mail-patch
-macro index (t '<tag-prefix><pipe-entry>~/bin/mailbin/mail-to-mbox<return>'  "Dumps tagged patches into ~/incoming/*.patch"
-macro index (a '<tag-prefix><pipe-entry>~/bin/mailbin/git-apply-incoming<return>'  "git am ~/incoming/*.patch"
-macro index (g '<tag-prefix><pipe-entry>~/bin/mailbin/git-apply<return>'  "git am tagged patches"
-macro index (c '<pipe-entry>~/bin/mailbin/checkpatch<return>' "Run checkpatch on ~/incoming/*"
-macro index (r '<pipe-entry>rm -f ~/incoming/*.patch<return>'  "Nukes all ~/incoming/"
-macro index (l '<pipe-entry>ls -ltr ~/incoming/<return>'  "ls -l ~/incoming/"
-macro index ,t '<pipe-entry>~/bin/mailbin/mail-to-mbox<return>'  "Dumps currently viewed patch into ~/incoming/*.patch"
-macro index ,g '<pipe-entry>~/bin/mailbin/git-apply<return>' "git am currently viewed patch"
-macro index ,a '<pipe-entry>~/bin/mailbin/git-abort<return>' "git am --abort"
-macro index ,r '<pipe-entry>~/bin/mailbin/git-reset<return>' "git-reset --hard origin"
+# mail-patch-git 
+# 在~/incoming目录生成patch
+macro index,pager ,t '<tag-prefix><pipe-entry>~/.mailconfig/mailbin/mail-to-mbox<return>'  "Dumps tagged patches into ~/incoming/*.patch"
+# 将~/incoming中patch打到git-tree
+macro index,pager ,a '<tag-prefix><pipe-entry>~/.mailconfig/mailbin/git-apply-incoming<return>'  "git am ~/incoming/*.patch"
+# 直接将tagged邮件作为patch打到git-tree
+macro index,pager ,g '<tag-prefix><pipe-entry>~/.mailconfig/mailbin/git-apply<return>'  "git am tagged patches"
+# 使用linux kernel中checkpatch脚本检查patch
+macro index,pager ,c '<pipe-entry>~/.mailconfig/mailbin/checkpatch<return>' "Run checkpatch on ~/incoming/*"
+# 清空~/incoming中的patch
+macro index,pager ,r '<pipe-entry>rm -f ~/incoming/*.patch<return>'  "Nukes all ~/incoming/"
+macro index,pager ,l '<pipe-entry>ls -ltr ~/incoming/<return>'  "ls -l ~/incoming/"
+macro index,pager .t '<pipe-entry>~/.mailconfig/mailbin/mail-to-mbox<return>'  "Dumps currently viewed patch into ~/incoming/*.patch"
+macro index,pager .g '<pipe-entry>~/.mailconfig/mailbin/git-apply<return>' "git am currently viewed patch"
+macro index,pager .a '<pipe-entry>~/.mailconfig/mailbin/git-abort<return>' "git am --abort"
+macro index,pager .r '<pipe-entry>~/.mailconfig/mailbin/git-reset<return>' "git-reset --hard origin"
 
 # 重新加载.muttrc配置
 macro index,pager,compose,browser,attach \ca ":source ~/.muttrc\n" "reload the ~/.muttrc"
@@ -228,8 +233,8 @@ color quoted4       red             black
 
 # ----------------------------------------------------------------------------------
 # Solarized 配色方案
-#source ~/github/linux-config/mail/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc 
-#source ~/github/linux-config/mail/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc 
-source ~/github/linux-config/mail/mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc 
-#source ~/github/linux-config/mail/mutt-colors-solarized/mutt-colors-solarized-light-256.muttrc
+#source ~/.mailconfig/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc 
+#source ~/.mailconfig/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc 
+source ~/.mailconfig/mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc 
+#source ~/.mailconfig/mutt-colors-solarized/mutt-colors-solarized-light-256.muttrc
 # ----------------------------------------------------------------------------------

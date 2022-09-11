@@ -1,0 +1,5 @@
+#!/bin/bash
+
+file=~/incoming/.git_tree_path
+path=`tail -n -1 $file`
+$path/scripts/checkpatch.pl ~/incoming/*

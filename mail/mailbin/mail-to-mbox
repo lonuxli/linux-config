@@ -1,0 +1,6 @@
+#!/bin/bash
+# formail参数: 
+# -m 指定formail识别邮件时header所需数量,防止邮件正文导致的提前分割
+# -I 删除指定header类型,防止patch中邮件信息过于丰富
+formail -m 5 -I "DKIM-Signature" -I "Received" -I "User-Agent" -I "X-GMAIL" -I "ARC" -cds /usr/bin/procmail -m  ~/.mailconfig/m2mbox.procmailrc -
+ls -l ~/incoming/
