@@ -31,11 +31,16 @@ touch ~/.Mail/.mutt/mutt.alias
 
 mkdir ~/log  
 mkdir -p ~/log/mail  
-touch ~/log/mail/procmaillog  
+touch ~/log/mail/procmail.log  
 touch ~/log/mail/msmtp.log  
+touch ~/log/mail/crontab.log
 
 mkdir ~/incoming  
 
 ## 支持256色
 echo "TERM=xterm-256color" >> ~/.bashrc  
 
+
+## 支持定时收取邮件
+运行命令crontab -e设置下列参数启动定时脚本
+*/5     *       *       *       *       ~/.mailconfig/mailbin/getmail.sh >> ~/log/mail/crontab.log

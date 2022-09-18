@@ -2,7 +2,7 @@
 SHELL=/bin/bash
 VERBOSE=off
 MAILDIR=$HOME/incoming/
-LOGFILE=$HOME/log/mail/procmaillog
+LOGFILE=$HOME/log/mail/procmail.log
 
 :0
 `formail -xSubject: | sed -e '{ s/Subject: //; s@\[@@g; s@\]@@g; s@[()]@_@g;

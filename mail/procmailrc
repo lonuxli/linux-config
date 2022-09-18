@@ -6,12 +6,12 @@ SHELL = /bin/bash
 # 指定发信工具位置
 SENDMAIL=/usr/bin/msmtp
 
-# Mutt邮件存放主目录
-MAILDIR=~/.Mail
+# Mutt邮件存放主目录,不能使用~表示用户目录某些版本存在问题
+MAILDIR=$HOME/.Mail
 # 默认存放的目录
-DEFAULT=~/.Mail/inbox
+DEFAULT=$HOME/.Mail/inbox
 # 日志文件存放位置
-LOGFILE=~/log/mail/procmail.log
+LOGFILE=$HOME/log/mail/procmail.log
 
 # 诊断用,关闭
 VERBOSE=no
