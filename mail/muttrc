@@ -135,10 +135,13 @@ bind index,pager \cn sidebar-next
 bind index,pager \co sidebar-open
 #bind index,pager <up> sidebar-prev 
 #bind index,pager <down> sidebar-next
-#bind index,pager <right> sidebar-next
-#bind index,pager <left> sidebar-prev
-macro index,pager <left> "<sidebar-prev><sidebar-open>" "open prev mailbox"
-macro index,pager <right> "<sidebar-next><sidebar-open>" "open next mailbox"
+bind index,pager <right> sidebar-next
+bind index,pager <left> sidebar-prev
+bind index,pager o sidebar-open
+#打开mailbox耗时较长注释掉
+#macro index,pager <left> "<sidebar-prev><sidebar-open>" "open prev mailbox"
+#macro index,pager <right> "<sidebar-next><sidebar-open>" "open next mailbox"
+
 # "c"显示信箱列表
 macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 
