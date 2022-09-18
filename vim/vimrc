@@ -20,8 +20,6 @@ syntax enable
 " 高亮当前行
 set cursorline
 set nocursorcolumn
-" 支持256色
-set t_Co=256
 "set cc=80
 "set cursorcolumn 
 
@@ -33,7 +31,10 @@ set background=dark
 " vimdiff config
 "======================================================
 if &diff
+	set t_Co=256
 	colors peaksea
+else
+	set t_Co=16
 endif
 
 
