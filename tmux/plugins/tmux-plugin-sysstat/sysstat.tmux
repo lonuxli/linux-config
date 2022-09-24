@@ -14,7 +14,8 @@ commands=(
   "#($CURRENT_DIR/scripts/cpu.sh)"
   "#($CURRENT_DIR/scripts/mem.sh)"
   "#($CURRENT_DIR/scripts/swap.sh)"
-  "#($CURRENT_DIR/scripts/loadavg.sh)"
+  #"#($CURRENT_DIR/scripts/loadavg.sh)"
+  "#($CURRENT_DIR/scripts/userinfo.sh)"
 )
 
 do_interpolation() {
