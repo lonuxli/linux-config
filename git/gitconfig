@@ -1,0 +1,31 @@
+[http]
+	proxy = socks5://127.0.0.1:1080
+[https]
+	proxy = socks5://127.0.0.1:1080
+[user]
+	name = Long Li
+	email = lonuxli.64@gmail.com
+[sendemail]
+	smtpserver = smtp.gmail.com
+	smtpserverport = 587
+	smtpencryption = tls
+	smtpuser = lonuxli.64@gmail.com
+	suppresscc = self
+	chainreplyto = false
+	smtppass = xxxxxxxxxxxxxxxx
+[core]
+	editor = vim
+	pager = less
+[credential]
+	helper = store
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	d = difftool
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
