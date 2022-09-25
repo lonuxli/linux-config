@@ -33,6 +33,9 @@ set background=dark
 if &diff
 	set t_Co=256
 	colors peaksea
+	"显示vimdiff的窗口栏编号
+	set laststatus=2 "show the status line
+	set statusline=W-%-10.3n "buffer number
 else
 	set t_Co=16
 endif
@@ -103,6 +106,17 @@ vnoremap <leader>t :<C-u>Tv<CR>
 nmap <C-L> :q!<cr>
 nmap <C-K> :qa!<cr>
 nmap <C-J> :w!<cr>
+
+"vimdiff for git merge, merge时显示4个窗口栏,定义THEIRS窗选取内容快捷键
+"窗口值在不同环境下可能会不同
+" 1 | THEIRS | contents of the file on the current branch
+" 2 | BASE   | common base for the merge
+" 3 | YOURS  | contents of the file to be merged.
+" 4 | MERGED | The file containing the conflict markers. You need edit and commit this file.
+map <silent> <leader>1 :diffget 1<CR> :diffupdate<CR>
+map <silent> <leader>2 :diffget 2<CR> :diffupdate<CR>
+map <silent> <leader>3 :diffget 3<CR> :diffupdate<CR>
+map <silent> <leader>4 :diffget 4<CR> :diffupdate<CR>
 
 "vimdiff模式下差异点浏览快捷键
 nmap z] ]c
