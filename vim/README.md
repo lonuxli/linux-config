@@ -7,6 +7,7 @@ Linux环境下软件开发用vim插件及配置，git clone之后可以通过软
 mkdir ~/github  
 cd ~/github  
 git clone https://github.com/lonuxli/vim-translator.git  
+git clone https://github.com/tpope/vim-fugitive.git
 git clone https://github.com/lonuxli/linux-config.git  
 ln -s ~/github/linux-config/vim/vimrc ~/.vimrc  
 ln -s ~/github/linux-config/vim/vim ~/.vim  
