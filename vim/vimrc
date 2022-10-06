@@ -126,6 +126,18 @@ nmap z[ [c
 nmap z- zM
 nmap z= zR
 
+" vimdiff 四窗口合并快捷键
+" window
+" 1 | 2
+"-------
+" 3 | 4
+nmap z12 <Esc>:wincmd h<CR>:wincmd k<CR>:difft<CR>:wincmd l<CR>:difft<CR>:wincmd h<CR>:wincmd j<CR>:diffoff<CR>:wincmd l<CR>:diffoff<CR>
+nmap z34 <Esc>:wincmd h<CR>:wincmd k<CR>:diffoff<CR>:wincmd l<CR>:diffoff<CR>:wincmd h<CR>:wincmd j<CR>:difft<CR>:wincmd l<CR>:difft<CR>
+nmap z13 <Esc>:wincmd h<CR>:wincmd k<CR>:difft<CR>:wincmd l<CR>:diffoff<CR>:wincmd h<CR>:wincmd j<CR>:difft<CR>:wincmd l<CR>:diffoff<CR>
+nmap z24 <Esc>:wincmd h<CR>:wincmd k<CR>:diffoff<CR>:wincmd l<CR>:difft<CR>:wincmd h<CR>:wincmd j<CR>:diffoff<CR>:wincmd l<CR>:difft<CR>
+nmap z4  <Esc>:wincmd h<CR>:wincmd k<CR>:difft<CR>:wincmd l<CR>:difft<CR>:wincmd h<CR>:wincmd j<CR>:difft<CR>:wincmd l<CR>:difft<CR>
+
+
 "quickfix window map
 nmap <leader>n :cn<cr>
 nmap <leader>p :cp<cr>
