@@ -130,6 +130,10 @@ nmap z[ [c
 nmap z- zM
 nmap z= zR
 
+"重定向前置快捷键zb 后置快捷键zn 中间为操作,操作结果重定向到.atmp文件
+nmap zb <Esc>:set cspc=20<CR>:redir! > $m/.atmp<CR>
+nmap zn <Esc>:set cspc=8<CR>:redir end<CR>:e $m/.atmp<CR>
+
 " vimdiff 四窗口合并快捷键
 " window
 " 1 | 2
@@ -304,7 +308,7 @@ if ! &diff
 		  set cst
 		  set nocsverb
 		  "set csverb
-		  set cspc=5
+		  set cspc=8
 		  " add any database in current directory
 		  if filereadable("cscope.out")
 			cs add cscope.out

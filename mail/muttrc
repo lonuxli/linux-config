@@ -48,11 +48,12 @@ set indent_str="> "
 set forward_format="Fwd: %s"
 
 # 当你按"r"回信时，不提示你输入回信地址和主题，直接进入编辑模式
-set fast_reply
+#set fast_reply
 #no reply to myself
 unset metoo
 unset reply_self
 set reply_regexp="^(re([\[0-9\]+])*|aw|回复)(:[ \t]|：)"
+set askcc
 
 # --------------------------------------------------------------------------------------
 # 显示及交互配置
@@ -100,6 +101,7 @@ bind pager gg top
 bind pager G bottom
 bind index gg first-entry
 bind index G last-entry
+bind pager R group-reply
 bind index R group-reply
 
 bind index,pager \cf next-page
