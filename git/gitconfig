@@ -24,6 +24,8 @@
 	prompt = false
 [alias]
 	d = difftool
+	co = checkout
+	fp = format-patch
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3
