@@ -10,7 +10,7 @@
 "======================================================
 set encoding=utf-8 " UTF-8 编码
 set termencoding=utf-8
-set formatoptions+=mM
+set formatoptions+=mMcro
 set fencs=utf-8,gbk
 
 syntax enable
@@ -31,6 +31,7 @@ set background=dark
 "======================================================
 " vimdiff config
 "======================================================
+set fdm=manual
 if &diff
 	set t_Co=256
 	colors peaksea
@@ -302,12 +303,13 @@ let g:LookupFile_LookupFunc = 'LookupFile_IgnoreCaseFunc'
 " cscope的配置，可以在顶层目录或者子目录下加载数据库
 "=================================================================
 if ! &diff
+	set nocsverb
 	if has("cscope")
 		 cs kill -1 
 		 "set csprg=/home/zhang_jianxin2/bin/cscope
 		  "set csto=1
 		  set cst
-		  set nocsverb
+		  "set nocsverb
 		  "set csverb
 		  set cspc=8
 		  " add any database in current directory
@@ -329,6 +331,7 @@ if ! &diff
 		let g:cscope_dir=finddir("cscope.out", ".;")
 		let $sr='g:cscope_dir'
 	endif
+	set csverb
 endif
 
 nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>    
