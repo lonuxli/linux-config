@@ -21,10 +21,10 @@ getmail(){
 
 main(){
 	local mailinfo=
-	mailinfo="$mailinfo $(getmail "tome")"
+	mailinfo="MAIL $mailinfo $(getmail "tome")"
 	local vms=`ps ux | grep qemu | grep -v grep | wc -l`
-	local vminfo="VM(#[fg=green]${vms}#[default])"
-	echo $mailinfo $vminfo
+	local vminfo="VM:#[fg=green]${vms}#[default]"
+	echo $vminfo "|" $mailinfo
 }
 
 main
