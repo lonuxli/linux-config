@@ -22,8 +22,6 @@ getmail(){
 main(){
 	local mailinfo=
 	mailinfo="$mailinfo $(getmail "tome")"
-	mailinfo="$mailinfo $(getmail "lkml")"
-	mailinfo="$mailinfo $(getmail "inbox")"
 	local vms=`ps ux | grep qemu | grep -v grep | wc -l`
 	local vminfo="VM(#[fg=green]${vms}#[default])"
 	echo $mailinfo $vminfo
