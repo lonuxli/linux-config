@@ -10,7 +10,8 @@ systemctl enable network-from-cmdline.service
 
 ## 2. host设置
 添加host tap网卡设置服务
-sudo cp host-tap-network.service /etc/systemd/system/tap-network.service
+sudo cp setup-host-tap.sh /usr/local/bin/
+sudo cp host-tap-network.service /etc/systemd/system/
 
 sudo systemctl daemon-reload
 sudo systemctl enable host-tap-network.service

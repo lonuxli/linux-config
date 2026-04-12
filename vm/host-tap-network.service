@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash -c '/sbin/ip tuntap add dev tap0 mode tap && /sbin/ip link set tap0 up && /sbin/ip addr add 192.168.22.1/24 dev tap0'
+ExecStart=/usr/local/bin/setup-host-tap.sh
 RemainAfterExit=yes
 CapabilityBoundingSet=CAP_NET_ADMIN
 AmbientCapabilities=CAP_NET_ADMIN
