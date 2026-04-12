@@ -7,3 +7,6 @@
 ## 2. 启动命令行网络设置服务
 systemctl daemon-reload
 systemctl enable network-from-cmdline.service
+
+## 3. qemu启动虚拟机时将ip传入命令行
+"IP=192.168.22.120"
