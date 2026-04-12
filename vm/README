@@ -1,12 +1,20 @@
 # qemu虚拟机命令行网络配置方法
 
-## 1. 将文件拷贝到虚拟机
+## 1. 虚拟机设置
+将文件拷贝到虚拟机
 /usr/local/bin/setup-network-from-cmdline.sh
 /etc/systemd/system/network-from-cmdline.service
 
-## 2. 启动命令行网络设置服务
 systemctl daemon-reload
 systemctl enable network-from-cmdline.service
+
+## 2. host设置
+添加host tap网卡设置服务
+sudo cp host-tap-network.service /etc/systemd/system/tap-network.service
+
+sudo systemctl daemon-reload
+sudo systemctl enable host-tap-network.service
+sudo systemctl start host-tap-network.service
 
 ## 3. qemu启动虚拟机时将ip传入命令行
 "IP=192.168.22.120"
