@@ -1,0 +1,13 @@
+[Unit]
+Description=Configure network from kernel command line
+After=systemd-remount-fs.service
+Before=network.target
+Wants=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/setup-network-from-cmdline.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

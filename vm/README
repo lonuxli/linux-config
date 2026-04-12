@@ -1,0 +1,9 @@
+# qemu虚拟机命令行网络配置方法
+
+## 1. 将文件拷贝到虚拟机
+/usr/local/bin/setup-network-from-cmdline.sh
+/etc/systemd/system/network-from-cmdline.service
+
+## 2. 启动命令行网络设置服务
+systemctl daemon-reload
+systemctl enable network-from-cmdline.service
