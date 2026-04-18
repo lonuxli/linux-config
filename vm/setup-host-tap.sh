@@ -1,9 +1,27 @@
 #!/bin/bash
 
-# Setup tap interface
-ip tuntap add dev tap0 mode tap
-ip link set tap0 up
-ip addr add 192.168.22.1/24 dev tap0
+BRIDGE_NAME="br_ll"
+CONF_FILE="/etc/qemu/bridge.conf"
+
+# Setup bridge interface
+ip link add name $BRIDGE_NAME type bridge
+ip link set dev $BRIDGE_NAME up
+ip addr add 192.168.22.1/24 dev $BRIDGE_NAME
+
+mkdir -p $(dirname "$CONF_FILE")
+touch "$CONF_FILE"
+
+if ! grep -q "$BRIDGE_NAME" $CONF_FILE; then
+    echo "Adding bridge $BRIDGE_NAME to $CONF_FILE"
+    echo "allow $BRIDGE_NAME" | tee -a $CONF_FILE > /dev/null
+    chmod 644 "$CONF_FILE"
+fi
+
+BRIDGE_HELPER=$(find /usr -name qemu-bridge-helper 2>/dev/null | head -n 1)
+if [ -n "$BRIDGE_HELPER" ]; then
+    chmod u+s "$BRIDGE_HELPER"
+    echo "Bridge helper configured at: $BRIDGE_HELPER"
+fi
 
 # Enable IP forwarding
 sysctl -w net.ipv4.ip_forward=1
