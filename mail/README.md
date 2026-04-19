@@ -3,9 +3,10 @@
 ## 建立配置软链接
 ln -s ~/github/linux-config/mail ~/.mailconfig  
 ln -s ~/.mailconfig/muttrc ~/.muttrc  
-ln -s ~/.mailconfig/msmtprc ~/.msmtprc   
+cp ~/.mailconfig/msmtprc ~/.msmtprc
 chmod 0600 ~/.msmtprc  
 ln -s ~/.mailconfig/procmailrc  ~/.procmailrc  
+ln -s ~/.mailconfig/mailbin/getmail.sh ~/bin/pullmail
 
 ## 创建目录及文件
 mkdir ~/.Mail  

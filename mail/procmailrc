@@ -28,6 +28,42 @@ VERBOSE=no
 # 此外的任意符号被认为是邮箱文件夹, 可以采用绝对路径, 若使用相对路径,
 # 则是相对与$MAILDIR, 例如inbox/,表示$MAILDIR/inbox
 
+# 丢弃非纯文本邮件(有非纯文本type的邮件)
+:0
+* ^Content-Type:
+* !^Content-Type:[ 	]*text/plain
+/dev/null
+
+# 丢弃 HTML 邮件
+:0
+* ^Content-Type:.*text/html
+/dev/null
+
+# 丢弃带附件的邮件（multipart/mixed）
+:0
+* ^Content-Type:.*multipart/mixed
+/dev/null
+
+# 丢弃图文混排邮件（multipart/related）
+:0
+* ^Content-Type:.*multipart/related
+/dev/null
+
+# 丢弃图文 + 纯文本备用版本的邮件（multipart/alternative）
+:0
+* ^Content-Type:.*multipart/alternative
+/dev/null
+
+# 发送给我或抄送给我的邮件 (假设您的邮箱是 your.email@gmail.com)
+:0
+* ^To:.*lonuxli.64@gmail.com
+tome/
+
+# 抄送给我的邮件
+:0
+* ^Cc:.*lonuxli.64@gmail.com
+tome/
+
 # 归档lkml的邮件列表
 :0
 * ^To:.*@vger.kernel.org
