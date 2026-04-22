@@ -24,7 +24,7 @@ set mbox_type = Maildir
 set folder    = "~/.Mail"          # 所有信件所在目录
 set mbox      = "~/.Mail/inbox"    # 收件箱文件
 set record    = "~/.Mail/outbox"   # 发件箱文件
-set spoolfile = "~/.Mail/inbox"    # 启动mutt后默认显示的信箱文件
+set spoolfile = "~/.Mail/tome"    # 启动mutt后默认显示的信箱文件
 set postponed = "~/.Mail/drafts"    # 草稿箱
 # 自动匹配~/.Mail目录下以字母开头的目录作为信箱
 #mailboxes `echo -n "+ "; find ~/.Mail -maxdepth 1 -type d -name "[a-zA-Z]*" -printf "+'%f' "`

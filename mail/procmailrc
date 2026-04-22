@@ -56,18 +56,22 @@ VERBOSE=no
 
 # 发送给我或抄送给我的邮件 (假设您的邮箱是 your.email@gmail.com)
 :0
-* ^To:.*lonuxli.64@gmail.com
+* ^To:.*lonuxli.64
 tome/
 
-# 抄送给我的邮件
 :0
-* ^Cc:.*lonuxli.64@gmail.com
+* ^Cc:.*lonuxli.64
 tome/
 
 # 归档lkml的邮件列表
 :0
 * ^To:.*@vger.kernel.org
 lkml/
+
+:0
+* ^Cc:.*@vger.kernel.org
+lkml/
+
 
 # 剩下的邮件存放至inbox目录中
 :0
