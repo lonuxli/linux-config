@@ -45,7 +45,7 @@ getvm(){
 
 main(){
 	local mailinfo=
-	mailinfo="MAIL $mailinfo $(getmail "tome")"
+	mailinfo="$mailinfo $(getmail "tome")"
 	local vms=`ps ux | grep qemu | grep -v grep | wc -l`
 	local vminfo="$(getvm)"
 	echo $vminfo "|" $mailinfo
