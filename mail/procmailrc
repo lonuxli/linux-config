@@ -61,6 +61,7 @@ tome/
 
 :0
 * ^Cc:.*lonuxli.64
+* ^CC:.*lonuxli.64
 tome/
 
 # 归档lkml的邮件列表
@@ -70,6 +71,7 @@ lkml/
 
 :0
 * ^Cc:.*@vger.kernel.org
+* ^CC:.*@vger.kernel.org
 lkml/
 
 
